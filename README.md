@@ -38,7 +38,7 @@ Assuming you work on macOS and use [rvm]:
 
 3. Setup database:
     ```shell
-        rails db:create && rails db:migrate
+        rails db:create && rails db:migrate && rails db:seed
     ```
 
 

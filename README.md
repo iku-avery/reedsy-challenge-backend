@@ -1,24 +1,44 @@
 # README
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+# Store API
 
-Things you may want to cover:
+Store API is a Ruby on Rails application that provides a simple API for managing a Reedsy's (fictional) Merchandising Store.
 
-* Ruby version
+## Guide
 
-* System dependencies
+- [Development](#development)
+  - [Dependencies](#dependencies)
+  - [Installation](#installation)
 
-* Configuration
+## Development
+### Dependencies
 
-* Database creation
+- Ruby (3.2.2 recommended)
+- Ruby on Rails (7.0 recommended)
+- PostgreSQL
+- Bundler
 
-* Database initialization
+### Installation
 
-* How to run the test suite
+Assuming you work on macOS and use [rvm]:
 
-* Services (job queues, cache servers, search engines, etc.)
+1. Install dependencies listed in the [dependencies section](#dependencies)
 
-* Deployment instructions
+    ```shell
+    rvm install 3.2.2 && rvm use 3.2.2
+    brew update
+    ```
 
-* ...
+2. Clone the repository and change the directory:
+
+    ```shell
+    git clone git@github.com:iku-avery/store_api.git && cd store_api
+    bundle install
+    ```
+
+3. Setup database:
+    ```shell
+        rails db:create && rails db:migrate
+    ```
+
+

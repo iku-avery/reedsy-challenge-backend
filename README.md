@@ -9,6 +9,9 @@ Store API is a Ruby on Rails application that provides a simple API for managing
 - [Development](#development)
   - [Dependencies](#dependencies)
   - [Installation](#installation)
+- [Testing](#testing)
+  - [Running Tests](#running-tests)
+- [API Documentation](#api-documentation)
 
 ## Development
 ### Dependencies
@@ -42,3 +45,37 @@ Assuming you work on macOS and use [rvm]:
     ```
 
 
+## Testing
+
+To ensure the functionality of the Store API, you can run automated tests using RSpec. 
+
+### Running Tests
+
+Execute the following command to run the tests:
+
+```shell
+    bundle exec rspec spec
+```
+
+## API Documentation
+
+The API documentation for the Store API can be accessed via Swagger. 
+
+While running the application locally, you can access the documentation at the following URL:
+
+```shell
+    http://localhost:3000/api-docs/
+```
+
+## Using the API
+
+You can interact with the Store API by making HTTP requests to its endpoints:
+### Listing Products
+
+To retrieve a list of available products, you can use the following `curl` command:
+
+```shell
+curl -X 'GET' \
+  'http://localhost:3000/api/products' \
+  -H 'accept: application/json'
+```

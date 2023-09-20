@@ -72,6 +72,10 @@ While running the application locally, you can access the documentation at the f
 You can interact with the Store API by making HTTP requests to its endpoints:
 ### Listing Products
 
+```shell
+  GET /api/products
+```
+
 To retrieve a list of available products, you can use the following `curl` command:
 
 ```shell
@@ -79,3 +83,45 @@ curl -X 'GET' \
   'http://localhost:3000/api/products' \
   -H 'accept: application/json'
 ```
+
+### Update product price
+
+To update the price of a product, use the PUT request on the following endpoint:
+
+  ```shell
+    PUT /api/products/{id}
+  ```
+
+Replace {id} with the unique identifier of the product you want to update.
+
+The request body should be in JSON format and include the new price of the product:
+
+  ```shell
+    {
+    "product": {
+      "price": 11.99
+      }
+    }
+  ```
+
+You can use the following `curl` commands:
+
+  - Update product price with a 200 response
+
+    ```shell
+      curl -X PUT http://localhost:3000/api/products/{id} -H 'Content-Type: application/json' -d '{"product":{"price":11.99}}'
+    ```
+
+  - Attempt to update product using invalid id with a 404 response:
+
+    ```shell
+      curl -X PUT http://localhost:3000/api/products/not_existing_id -H 'Content-Type: application/json' -d '{"product":{"price":11.99}}'
+    ```
+
+  - Attempt to update a product with a negative price with a 400 response
+
+    ```shell
+      curl -X PUT http://localhost:3000/api/products/{id} -H 'Content-Type: application/json' -d '{"product":{"price":-11.99}}'
+    ```
+
+----

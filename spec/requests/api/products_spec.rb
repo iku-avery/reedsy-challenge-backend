@@ -1,11 +1,10 @@
 require 'rails_helper'
-require 'rails_helper'
 require 'swagger_helper'
 
 RSpec.describe 'api/products', type: :request do
   let!(:products) { FactoryBot.create_list(:product, 2) }
 
-  path '/api/products' do
+    path '/api/products' do
     get('list products') do
       operationId 'listProducts'
 
@@ -50,6 +49,96 @@ RSpec.describe 'api/products', type: :request do
             expect(product_response[:created_at].to_datetime.to_i).to eq(product.created_at.to_datetime.to_i)
             expect(product_response[:updated_at].to_datetime.to_i).to eq(product.updated_at.to_datetime.to_i)
           end
+        end
+      end
+    end
+  end
+
+  path '/api/products/{id}' do
+    parameter name: 'id', in: :path, type: :string
+    parameter name: :product, in: :body, schema: {
+      type: :object,
+      properties: {
+        price: { type: :number },
+      },
+      required: ['price'],
+    }
+  
+    put('update product price') do
+      operationId 'updateProductPrice'
+  
+      let(:id) { products.first.id }
+      let(:invqalid_id) { 'invalid_id' }
+      let(:price) { 11.99 }
+      let(:invalid_price) { -1 }
+      let(:request_body) do
+        {
+          product: {
+            price: price
+          }
+        }
+      end
+      let(:invalid_request_body) do
+        {
+          product: {
+            price: invalid_price
+          }
+        }
+      end
+  
+      response(200, 'successful') do
+        examples 'application/json' => 
+          {
+            id: '11kdkk111',
+            code: 'MUG',
+            name: 'Reedsy Mug',
+            price: '11.99',
+            created_at: '2023-09-18T17:15:35Z',
+            updated_at: '2023-09-18T17:15:35Z'
+          }
+  
+        before do
+          put "/api/products/#{id}", params: request_body.to_json, headers: { 'Content-Type' => 'application/json' }
+        end
+  
+        it 'returns a 200 response' do
+          expect(response).to have_http_status(200)
+          updated_product = JSON.parse(response.body)
+          expect(updated_product['price'].to_f).to eq(price)
+        end
+      end
+  
+      response(404, 'not found') do
+        examples 'application/json' => 
+          {
+            error: 'Product not found'
+          }
+  
+        before do
+          put "/api/products/#{invqalid_id}", params: request_body.to_json, headers: { 'Content-Type' => 'application/json' }
+        end
+  
+        it 'returns a 404 response' do
+          expect(response).to have_http_status(404)
+          error_response = JSON.parse(response.body)
+          expect(error_response['error']).to eq('Product not found')
+        end
+      end
+  
+      response(400, 'bad request') do
+        examples 'application/json' => 
+          {
+            error: 'Price must be a positive number'
+          }
+  
+        before do
+          put "/api/products/#{id}", params: invalid_request_body.to_json, headers: { 'Content-Type' => 'application/json' }
+        end
+  
+        it 'returns a 400 response' do
+          expect(response).to have_http_status(400)
+          error_response = JSON.parse(response.body)
+          expect(error_response['error']).to eq('Price must be a positive number')
         end
       end
     end

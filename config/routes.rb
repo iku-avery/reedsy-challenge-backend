@@ -3,6 +3,6 @@ Rails.application.routes.draw do
   mount Rswag::Api::Engine => '/api-docs'
 
   namespace :api do
-    resources :products, only: [:index]
+    resources :products, only: [:index, :update]
   end
 end

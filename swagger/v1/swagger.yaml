@@ -28,6 +28,55 @@ paths:
                     price: '15.00'
                     created_at: '2023-09-18T17:15:35Z'
                     updated_at: '2023-09-18T17:15:35Z'
+  "/api/products/{id}":
+    parameters:
+    - name: id
+      in: path
+      required: true
+      schema:
+        type: string
+    - name: product
+      in: body
+      schema:
+        type: object
+        properties:
+          price:
+            type: number
+        required:
+        - price
+    put:
+      summary: update product price
+      operationId: updateProductPrice
+      responses:
+        '200':
+          description: successful
+          content:
+            application/json:
+              examples:
+                example_0:
+                  value:
+                    id: 11kdkk111
+                    code: MUG
+                    name: Reedsy Mug
+                    price: '11.99'
+                    created_at: '2023-09-18T17:15:35Z'
+                    updated_at: '2023-09-18T17:15:35Z'
+        '404':
+          description: not found
+          content:
+            application/json:
+              examples:
+                example_0:
+                  value:
+                    error: Product not found
+        '400':
+          description: bad request
+          content:
+            application/json:
+              examples:
+                example_0:
+                  value:
+                    error: Price must be a positive number
 servers:
 - url: http://localhost:3000
   variables:

@@ -33,7 +33,7 @@ class PrepareCartService
 
     {
       products: products_data,
-      total_price: total_price.to_s('F')
+      total_price: "%.2f" % total_price.truncate(2)
     }
   end
 
@@ -42,11 +42,10 @@ class PrepareCartService
 
     cart_items.each do |cart_item|
       product = products[cart_item[:product_id]]
-      item_price = BigDecimal(product.price) * BigDecimal(cart_item[:quantity])
+      item_price = DiscountService.new(product, cart_item).apply
       total_price += item_price
     end
 
-    total_price = total_price.round(2)
     [total_price, products.values]
   end
 
@@ -55,7 +54,7 @@ class PrepareCartService
       id: product.id,
       code: product.code,
       name: product.name,
-      price: product.price.to_s('F'),
+      price: "%.2f" % product.price.truncate(2),
       quantity: cart_items.find { |item| item[:product_id] == product.id }[:quantity]
     }
   end

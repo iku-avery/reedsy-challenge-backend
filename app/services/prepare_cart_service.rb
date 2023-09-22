@@ -1,14 +1,14 @@
 require 'bigdecimal'
 
 class PrepareCartService
-  Result = Struct.new(:code, :body)
+  include ResultHandler
 
   def call(cart_items)
     product_ids = cart_items.map { |cart_item| cart_item[:product_id] }
     products = fetch_products(product_ids)
 
-    return invalid_request_result unless valid_cart_items?(cart_items)
-    return not_found_result if products.empty?
+    return invalid_request_result('Quantity must be a positive number') unless valid_cart_items?(cart_items)
+    return not_found_result('Product not found') if products.empty?
 
     result = prepare_cart_result(cart_items, products)
     ok_result(result)
@@ -58,17 +58,5 @@ class PrepareCartService
       price: product.price.to_s('F'),
       quantity: cart_items.find { |item| item[:product_id] == product.id }[:quantity]
     }
-  end
-
-  def ok_result(result)
-    Result.new(200, result)
-  end
-
-  def invalid_request_result
-    Result.new(400, { error: 'Quantity must be a positive number' })
-  end
-
-  def not_found_result
-    Result.new(404, { error: 'Product not found' })
   end
 end

@@ -26,20 +26,19 @@ RSpec.describe PrepareCartService do
             :code => "MUG",
             :id => "e60b29f9-0e7c-49f3-92e1-a15d82d5430d",
             :name => "Reedsy Mug",
-            :price => 18.99,
+            :price => "18.99",
             :quantity => 2
           },
           {
             :code => "TSHIRT",
             :id => "93a43f44-431d-487f-b3d6-20cc697461af",
             :name => "Reedsy T-shirt",
-            :price => 25.99,
+            :price => "25.99",
             :quantity => 3
           }
         ],
-        :total_price => 115.95
+        :total_price => "115.95"
       }
-
 
       it 'returns 200 with body containing hash with total price and array of products' do
         result = service.call(cart_items)

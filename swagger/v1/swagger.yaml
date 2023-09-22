@@ -4,6 +4,64 @@ info:
   title: API V1
   version: v1
 paths:
+  "/api/cart":
+    post:
+      summary: add items to cart
+      operationId: addToCart
+      parameters:
+        - in: body
+          name: products
+          required: true
+          schema:
+            type: object
+            properties:
+              products:
+                type: array
+                items:
+                  type: object
+                  properties:
+                    product_id:
+                      type: string
+                      example: '11kdkk111'
+                    quantity:
+                      type: integer
+                      example: 2
+      responses:
+        '200':
+          description: successful
+          content:
+            application/json:
+              examples:
+                example_0:
+                  value:
+                    products:
+                    - id: 11kdkk111
+                      code: MUG
+                      name: Reedsy Mug
+                      price: '6.00'
+                      quantity: 2
+                    - id: 31kdkk222
+                      code: TSHIRT
+                      name: Reedsy T-shirt
+                      price: '15.00'
+                      quantity: 1
+                    total_price: '27.00'
+        '404':
+          description: not found
+          content:
+            application/json:
+              examples:
+                example_0:
+                  value:
+                    error: Product not found
+        '400':
+          description: bad request
+          content:
+            application/json:
+              examples:
+                example_0:
+                  value:
+                    error: Invalid request parameters
   "/api/products":
     get:
       summary: list products

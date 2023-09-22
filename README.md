@@ -124,4 +124,38 @@ You can use the following `curl` commands:
       curl -X PUT http://localhost:3000/api/products/{id} -H 'Content-Type: application/json' -d '{"product":{"price":-11.99}}'
     ```
 
+### Adding Items to Cart
+
+To add items to the cart, use the POST request on the following endpoint:
+
+```shell
+  POST /api/cart
+```
+
+The request body should be in JSON format and include an array of products with their product_id and quantity:
+
+```shell
+    {
+  "products": [
+    { "product_id": {id}, "quantity": 2 },
+    { "product_id": {id}, "quantity": 1 }
+    ]
+  }
+```
+
+You can use the following `curl` commands:
+
+```shell
+  curl -X POST http://localhost:3000/api/cart -H 'Content-Type: application/json' -d '{
+  "products": [
+    { "product_id": {id}, "quantity": 2 },
+    { "product_id": {id}, "quantity": 1 }
+  ]
+}'
+```
+
+
+-----
+
+
 ----

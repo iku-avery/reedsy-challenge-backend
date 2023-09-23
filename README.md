@@ -1,6 +1,6 @@
 # README
 
-# Store API
+# Store API reedsy-challenge-backend
 
 Store API is a Ruby on Rails application that provides a simple API for managing a Reedsy's (fictional) Merchandising Store.
 
@@ -35,7 +35,7 @@ Assuming you work on macOS and use [rvm]:
 2. Clone the repository and change the directory:
 
     ```shell
-    git clone git@github.com:iku-avery/store_api.git && cd store_api
+    git clone git@github.com:iku-avery/reedsy-challenge-backend.git && cd store_api
     bundle install
     ```
 
@@ -59,12 +59,173 @@ Execute the following command to run the tests:
 
 ## API Documentation
 
-The API documentation for the Store API can be accessed via Swagger. 
+### Endpoints
 
-While running the application locally, you can access the documentation at the following URL:
+#### List Products
+
+URL: `/api/products`
+Method: GET
+Description: Get a list of all available products.
+Response: Returns a JSON array of products with details including ID, code, name, price, and timestamps.
 
 ```shell
-    http://localhost:3000/api-docs/
+[
+  {
+    "id": "11kdkk111",
+    "code": "MUG",
+    "name": "Reedsy Mug",
+    "price": "6.00",
+    "created_at": "2023-09-18T17:15:35Z",
+    "updated_at": "2023-09-18T17:15:35Z"
+  },
+  {
+    "id": "31kdkk222",
+    "code": "TSHIRT",
+    "name": "Reedsy T-shirt",
+    "price": "15.00",
+    "created_at": "2023-09-18T17:15:35Z",
+    "updated_at": "2023-09-18T17:15:35Z"
+  }
+]
+```
+
+#### Update Product Price
+
+URL: `/api/products/:id`
+Method: UPDATE
+Description: Update the price of a specific product.
+
+Request Parameters:
+- id (required): The ID of the product to update.
+- product (required): An object containing the new price.
+
+Request:
+```shell
+  PUT /api/products/:id
+```
+Request body:
+```shell
+  {
+    "product": {
+      "price": 8.99
+    }
+  }
+```
+
+Response: 
+Returns the updated product with details including ID, code, name, price, and timestamps.
+Expected Response Code: 200 (OK)
+Expected Response Body:
+
+  ```shell
+    {
+      "id": "11kdkk111",
+      "code": "MUG",
+      "name": "Reedsy Mug",
+      "price": "11.99",
+      "created_at": "2023-09-18T17:15:35Z",
+      "updated_at": "2023-09-18T17:15:35Z"
+    }
+  ```
+
+Possible Error Response (404 Not Found):
+
+```shell
+  {
+    "error": "Product not found"
+  }
+```
+
+
+Possible Error Response (400 Bad Request):
+
+```shell
+  {
+    "error": "Price must be a positive number"
+  }
+```
+
+
+#### Checkout (Add Items to Cart)
+
+URL: `/api/cart`
+Method: POST
+Description: Add items to the shopping cart.
+
+Request Parameters:
+
+- products (required): An array of objects containing product IDs and quantities.
+
+Request:
+```shell
+  POST /api/cart
+```
+
+Request body:
+```shell
+  {
+  "products": [
+    {
+      "product_id": "11kdkk111",
+      "quantity": 2
+    },
+    {
+      "product_id": "31kdkk222",
+      "quantity": 1
+    }
+  ]
+}
+```
+
+Response: 
+Returns a JSON object representing the cart, including a list of products added and the total price.
+Expected Response Code: 200 (OK)
+Expected Response Body:
+
+```shell
+  {
+    "products": [
+      {
+        "id": "11kdkk111",
+        "code": "MUG",
+        "name": "Reedsy Mug",
+        "price": "6.00",
+        "quantity": 2
+      },
+      {
+        "id": "31kdkk222",
+        "code": "TSHIRT",
+        "name": "Reedsy T-shirt",
+        "price": "15.00",
+        "quantity": 1
+      }
+    ],
+    "total_price": "27.00"
+  }
+```
+
+Possible Error Response (404 Not Found - Product Not Found):
+
+```shell
+  {
+    "error": "Product not found"
+  }
+```
+
+Possible Error Response (400 Bad Request - Negative Quantity):
+
+```shell
+  {
+    "error": "Quantity must be a positive number"
+  }
+```
+
+Possible Error Response (400 Bad Request - Invalid Request Parameters):
+
+```shell
+  {
+    "error": "Invalid request parameters"
+  }
 ```
 
 ## Using the API
@@ -135,7 +296,7 @@ To add items to the cart, use the POST request on the following endpoint:
 The request body should be in JSON format and include an array of products with their product_id and quantity:
 
 ```shell
-    {
+  {
   "products": [
     { "product_id": {id}, "quantity": 2 },
     { "product_id": {id}, "quantity": 1 }
@@ -155,7 +316,11 @@ You can use the following `curl` commands:
 ```
 
 
------
+**Testing with Postman:**
+
+You can also test API using Postman. I've provided a Postman collection that includes pre-configured requests for API endpoints. You can import the collection into Postman and use it to interact with API. The collection includes sample requests, expected responses, and variables for easy testing.
+
+**Postman Collection:** [Download Postman Collection](https://we.tl/t-19yqi2BZ4h)
 
 
 ----

@@ -62,7 +62,7 @@ class DiscountService
     end
   
     def calculate_original_price
-      BigDecimal(@product.price) * BigDecimal(@cart_item[:quantity])
+      BigDecimal(@product.price) * BigDecimal(@quantity)
     end
 end
   

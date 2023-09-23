@@ -5,6 +5,8 @@ class Api::ProductsController < ApplicationController
     end
 
     def update
+        params[:product].blank? && (render json: { error: 'Invalid request parameters' }, status: :bad_request) && return
+
         result = ::UpdateProductService.new.call(params[:id], product_params)
         render json: result.body, status: result.code
     end      

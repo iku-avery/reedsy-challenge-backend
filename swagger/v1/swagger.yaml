@@ -95,13 +95,22 @@ paths:
         type: string
     - name: product
       in: body
+      required: true
       schema:
         type: object
         properties:
-          price:
-            type: number
-        required:
-        - price
+          product:
+            type: object
+            properties:
+              price:
+                type: number
+            required:
+              - price
+        examples:
+        example_1:
+          value:
+            product:
+              price: 11.00
     put:
       summary: update product price
       operationId: updateProductPrice
@@ -136,7 +145,7 @@ paths:
                   value:
                     error: Price must be a positive number
 servers:
-- url: http://localhost:3000
-  variables:
-    defaultHost:
-      default: localhost:3000
+  - url: http://localhost:3000
+    variables:
+      defaultHost:
+        default: localhost:3000

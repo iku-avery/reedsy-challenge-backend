@@ -1,5 +1,25 @@
 # README
 
+# Preface 
+
+
+## about me
+
+I'm a nature-loving nerd with a kid-like enthusiasm who can't help but tell it like it is. Honesty, empathy, and teamwork are my priorities. Being real is super important to me as someone on the autism spectrum. I used to sling coffee, judge it, and even wrote a book about it. I'm pumped to keep going, using my tech skills and passion to do cool stuff that matters.
+
+As for hobbies, I'm a bookworm who loves magical realism, fantasy, sci-fi, and books about social stuff and nature. Nature itself, whether it's by the sea or deep in the forests, is where I find my peace, and I hold a dream close to my heart of one day running an animal sanctuary. Trains, Doctor Who, and sharing my passions with others are my absolute joys. I also find immense satisfaction in hands-on activities like carpentry, pottery, whipping up homemade jams, and tending to my garden.
+:seedling: :train: :books: :turtle: :sauropod: :black_cat: :mountain:
+
+## professional experience and commercial projects
+
+I spent several years in a software house, where I contributed to diverse projects. One standout was Firepoint, a Real Estate CRM solution. I worked on exciting features like dialer and call recording, integrations with Zapier and Twilio, and building advanced search tools, IDX, and more. Another highlight was Urb-it, a sustainable logistics platform for eco-friendly last-mile deliveries in Europe. I created an API-only app to integrate Urb-it with various services like Bringg, Woop, and Coop.
+
+Later, at Shopify in the Merchant Services/Delivery Settings team, I focused on enhancing the admin panel. I worked on new features, A/B testing, and "shop promise" functionality. I also optimized the API for larger merchants, addressing performance, queries, and versioning. Additionally, I was part of the team that sorbetized the entire app for improved robustness.
+
+## major achievements
+
+:potted_plant: TBH I don't just measure my achievements by specific milestones. Most of my accomplishments are about the opportunity to learn and grow. I take pride in the fact that every time users can use a new feature and it brings them joy, it's a rewarding achievement in itself.
+
 # Store API reedsy-challenge-backend
 
 Store API is a Ruby on Rails application that provides a simple API for managing a Reedsy's (fictional) Merchandising Store.
@@ -63,10 +83,10 @@ Execute the following command to run the tests:
 
 #### List Products
 
-URL: `/api/products`
-Method: GET
-Description: Get a list of all available products.
-Response: Returns a JSON array of products with details including ID, code, name, price, and timestamps.
+- URL: `/api/products`
+- Method: GET
+- Description: Get a list of all available products.
+- Response: Returns a JSON array of products with details including ID, code, name, price, and timestamps.
 
 ```shell
 [
@@ -91,19 +111,19 @@ Response: Returns a JSON array of products with details including ID, code, name
 
 #### Update Product Price
 
-URL: `/api/products/:id`
-Method: UPDATE
-Description: Update the price of a specific product.
+- URL: `/api/products/:id`
+- Method: UPDATE
+- Description: Update the price of a specific product.
 
-Request Parameters:
-- id (required): The ID of the product to update.
-- product (required): An object containing the new price.
+- Request Parameters:
+  - id (required): The ID of the product to update.
+  - product (required): An object containing the new price.
 
-Request:
+- Request:
 ```shell
   PUT /api/products/:id
 ```
-Request body:
+- Request body:
 ```shell
   {
     "product": {
@@ -112,10 +132,10 @@ Request body:
   }
 ```
 
-Response: 
-Returns the updated product with details including ID, code, name, price, and timestamps.
-Expected Response Code: 200 (OK)
-Expected Response Body:
+- Response: 
+  - Returns the updated product with details including ID, code, name, price, and timestamps.
+  - Expected Response Code: 200 (OK)
+  - Expected Response Body:
 
   ```shell
     {
@@ -128,7 +148,7 @@ Expected Response Body:
     }
   ```
 
-Possible Error Response (404 Not Found):
+- Possible Error Response (404 Not Found):
 
 ```shell
   {
@@ -137,7 +157,7 @@ Possible Error Response (404 Not Found):
 ```
 
 
-Possible Error Response (400 Bad Request):
+- Possible Error Response (400 Bad Request):
 
 ```shell
   {
@@ -148,20 +168,20 @@ Possible Error Response (400 Bad Request):
 
 #### Checkout (Add Items to Cart)
 
-URL: `/api/cart`
-Method: POST
-Description: Add items to the shopping cart.
+- URL: `/api/cart`
+- Method: POST
+- Description: Add items to the shopping cart.
 
-Request Parameters:
+- Request Parameters:
 
-- products (required): An array of objects containing product IDs and quantities.
+   - products (required): An array of objects containing product IDs and quantities.
 
-Request:
+- Request:
 ```shell
   POST /api/cart
 ```
 
-Request body:
+- Request body:
 ```shell
   {
   "products": [
@@ -177,10 +197,10 @@ Request body:
 }
 ```
 
-Response: 
-Returns a JSON object representing the cart, including a list of products added and the total price.
-Expected Response Code: 200 (OK)
-Expected Response Body:
+- Response: 
+  - Returns a JSON object representing the cart, including a list of products added and the total price.
+  - Expected Response Code: 200 (OK)
+  - Expected Response Body:
 
 ```shell
   {
@@ -204,7 +224,7 @@ Expected Response Body:
   }
 ```
 
-Possible Error Response (404 Not Found - Product Not Found):
+- Possible Error Response (404 Not Found - Product Not Found):
 
 ```shell
   {
@@ -212,7 +232,7 @@ Possible Error Response (404 Not Found - Product Not Found):
   }
 ```
 
-Possible Error Response (400 Bad Request - Negative Quantity):
+- Possible Error Response (400 Bad Request - Negative Quantity):
 
 ```shell
   {
@@ -220,7 +240,7 @@ Possible Error Response (400 Bad Request - Negative Quantity):
   }
 ```
 
-Possible Error Response (400 Bad Request - Invalid Request Parameters):
+- Possible Error Response (400 Bad Request - Invalid Request Parameters):
 
 ```shell
   {

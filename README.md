@@ -5,20 +5,10 @@
 
 ## about me
 
-I'm a nature-loving nerd with a kid-like enthusiasm who can't help but tell it like it is. Honesty, empathy, and teamwork are my priorities. Being real is super important to me as someone on the autism spectrum. I used to sling coffee, judge it, and even wrote a book about it. I'm pumped to keep going, using my tech skills and passion to do cool stuff that matters.
+I'm a nature-loving nerd with a kid-like enthusiasm who can't help but tell it like it is. 
 
 As for hobbies, I'm a bookworm who loves magical realism, fantasy, sci-fi, and books about social stuff and nature. Nature itself, whether it's by the sea or deep in the forests, is where I find my peace, and I hold a dream close to my heart of one day running an animal sanctuary. Trains, Doctor Who, and sharing my passions with others are my absolute joys. I also find immense satisfaction in hands-on activities like carpentry, pottery, whipping up homemade jams, and tending to my garden.
 :seedling: :train: :books: :turtle: :sauropod: :black_cat: :mountain:
-
-## professional experience and commercial projects
-
-I spent several years in a software house, where I contributed to diverse projects. One standout was Firepoint, a Real Estate CRM solution. I worked on exciting features like dialer and call recording, integrations with Zapier and Twilio, and building advanced search tools, IDX, and more. Another highlight was Urb-it, a sustainable logistics platform for eco-friendly last-mile deliveries in Europe. I created an API-only app to integrate Urb-it with various services like Bringg, Woop, and Coop.
-
-Later, at Shopify in the Merchant Services/Delivery Settings team, I focused on enhancing the admin panel. I worked on new features, A/B testing, and "shop promise" functionality. I also optimized the API for larger merchants, addressing performance, queries, and versioning. Additionally, I was part of the team that sorbetized the entire app for improved robustness.
-
-## major achievements
-
-:potted_plant: TBH I don't just measure my achievements by specific milestones. Most of my accomplishments are about the opportunity to learn and grow. I take pride in the fact that every time users can use a new feature and it brings them joy, it's a rewarding achievement in itself.
 
 # Store API reedsy-challenge-backend
 
